@@ -1,0 +1,15 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Blog</title>
+</head>
+<body>
+    <?php foreach($posts as $post): ?>
+        <a href="show.php?id=<?php echo $post['id']?>">
+        <?php echo $post['title']?><br>
+        </a>
+    <?php endforeach;?>
+</body>
+</html>
