@@ -47,4 +47,22 @@ function get_post_by_id($id){
     return $row;
 }
 
+function login($login, $password){
+    $link = database_connect();
+
+    $result = $link->query('SELECT * FROM users WHERE login="'.$login.'"');
+    $user =  $result->fetch(PDO::FETCH_ASSOC);
+
+    return check_password($password, $user['id'], $user['p_hash']);
+}
+
+function check_password($pass, $id, $hash){
+
+    if (crypt($pass, '$1$'.$id) == $hash){
+        return true;
+    } else{
+        return false;
+    }
+}
+
 ?>

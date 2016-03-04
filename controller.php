@@ -16,4 +16,17 @@ function post($id){
     require_once('templates/post.php');
 }
 
+function admin_page(){
+    echo 'admin page!';
+}
+
+function login_page($user = null, $password = null){
+    if (!is_null($user) and !is_null($password)){
+        if(login($user, $password)){
+            session_start();
+            $_SESSION['user']='admin';
+        } 
+    } else require_once('templates/login_page.php');
+}
+
 ?>
