@@ -17,16 +17,23 @@ function post($id){
 }
 
 function admin_page(){
-    echo 'admin page!';
+    require_once('templates/admin_page.php');
 }
 
 function login_page($user = null, $password = null){
     if (!is_null($user) and !is_null($password)){
         if(login($user, $password)){
-            session_start();
             $_SESSION['user']='admin';
+            require_once('templates/admin_page.php');
         } 
     } else require_once('templates/login_page.php');
+}
+
+function ajax($action){
+
+    if ($action == 'exit'){
+        unset($_SESSION['user']);
+    }
 }
 
 ?>
